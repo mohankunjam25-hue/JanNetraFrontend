@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+  .animate-shake {
+    animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+  }
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+:root {
+  /* Modern Neutral Palette - Light */
+  --bg-main: #ffffff;
+  --bg-surface: #f8fafc;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-main: #e2e8f0;
+  
+  --accent: #aa3bff;
+  --accent-soft: rgba(170, 59, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  font: 14px/1.6 var(--sans);
+  color: var(--text-main);
+  background: var(--bg-main);
+  color-scheme: light;
+  
+  @media (max-width: 1024px) {
+    font-size: 13px;
+  }
+}
+
+.dark {
+  /* Premium Dark Palette - Deep Charcoal & Slate */
+  --bg-main: #08090d;
+  --bg-surface: #11131a;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border-main: #1e293b;
+  
+  --accent: #c084fc;
+  --accent-soft: rgba(192, 132, 252, 0.12);
+  --glass-bg: rgba(8, 9, 13, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  
+  color-scheme: dark;
+}
+
+@theme {
+  --color-main-bg: var(--bg-main);
+  --color-surface-bg: var(--bg-surface);
+  --color-main-text: var(--text-main);
+  --color-muted-text: var(--text-muted);
+  --color-main-border: var(--border-main);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-glass-bg: var(--glass-bg);
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Global Interactive Cursor */
+button, 
+a, 
+input[type="submit"], 
+input[type="button"], 
+input[type="reset"],
+[role="button"],
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+/* Mobile Touch Optimizations */
+@media (max-width: 768px) {
+  button, 
+  [role="button"],
+  .sidebar-item,
+  .nav-item {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input, 
+  select, 
+  textarea {
+    font-size: 16px !important; /* Prevents auto-zoom on iOS */
+  }
+}
+
+/* Layout Utilities */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
